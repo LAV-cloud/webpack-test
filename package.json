@@ -1,0 +1,33 @@
+{
+  "name": "webpack-test",
+  "version": "1.0.0",
+  "description": "webpack-test",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LAV-cloud/webpack-test.git"
+  },
+  "keywords": [
+    "js",
+    "webpack"
+  ],
+  "author": "LAV-cloud",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LAV-cloud/webpack-test/issues"
+  },
+  "homepage": "https://github.com/LAV-cloud/webpack-test#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.4.0",
+    "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.3.0",
+    "webpack": "^5.58.1",
+    "webpack-cli": "^4.9.0"
+  }
+}
