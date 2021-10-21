@@ -21,7 +21,6 @@ const optimization = () => {
       new TerserWebpackPlugin(),
     ];
   }
-
   return config;
 };
 
@@ -39,16 +38,30 @@ const cssLoaders = (extra) => {
   if (extra) {
     loaders.push(extra);
   }
-
   return loaders;
+};
+
+const babelLoader = (preset) => {
+  const options = {
+    presets: ['@babel/preset-env'],
+  };
+
+  if (preset) {
+    options.presets.push(preset);
+  }
+
+  return {
+    loader: 'babel-loader',
+    options,
+  };
 };
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: {
-    main: './index.js',
-    analytics: './analytics.js',
+    main: ['@babel/polyfill', './index.jsx'],
+    analytics: './analytics.ts',
   },
   output: {
     filename: filename('.js'),
@@ -86,6 +99,21 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: babelLoader(),
+      },
+      {
+        test: /\.m?ts$/,
+        exclude: /node_modules/,
+        use: babelLoader('@babel/preset-typescript'),
+      },
+      {
+        test: /\.m?jsx$/,
+        exclude: /node_modules/,
+        use: babelLoader('@babel/preset-react'),
+      },
       {
         test: /\.css$/,
         use: cssLoaders(),
